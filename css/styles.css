@@ -1,0 +1,161 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    font-family: 'Ubuntu', sans-serif;
+    background-color: #DDC3A5;
+}
+
+header {
+    background-color: #101010;
+    background-image: url(../poster.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    height: 20rem;
+    
+}
+
+nav {
+    text-align: end;
+    padding-top: 1rem;
+    padding-right: 1rem;
+    font-size: 25px;
+}
+
+.added-nav {
+    text-align: center;
+    text-decoration: none;
+    color: gold;
+}
+
+.popcorn-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    
+}
+
+.popcorn-card {
+    position: relative;
+    background-color: #201E20;
+    color: white;
+    margin: 1rem;
+    display: grid;
+    grid-template-columns: 16rem;
+    grid-template-rows: 6.5rem auto 1.5rem 3rem;
+    grid-template-areas: "image" "info" "price" "characteristics";
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+}
+
+.addtocart{  
+    position: absolute;
+    top: 40%;
+    left: 12%;
+    font-size: 25px;
+    font-weight: bolder;
+    display: none;
+    background-color: black;
+    color: gold;
+    padding: 1rem;
+}
+
+.popcorn-card:hover {
+    opacity: 80%;
+    cursor: pointer;
+}
+
+.popcorn-card:hover .addtocart {
+    display: block;
+}
+
+
+.popcorn-card__img{
+    grid-area: image;
+    max-width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1rem;
+}
+.popcorn-card__characteristics{
+    grid-area: characteristics;
+    font-size: 12px;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-around;
+    background-color: #E0A96D;
+    align-items: center;
+    border-radius: 0px 0px 8px 8px;
+}
+
+.popcorn-card__name {
+    color: gold;
+    margin: 1rem;
+}
+
+.popcorn-card__text{
+    font-size: 14px;
+    grid-area: info;
+    text-align: center;
+    margin: 1rem;
+    line-height: 1.1rem;
+}
+
+
+.popcorn-card__price{
+    font-size: 12px;
+    grid-area: price;
+    text-align: center;
+}
+
+span {
+    color: red;
+    font-size: 16px;
+}
+
+.popcorn-card__serialnumber{
+    font-size: 10px;
+    margin-top: 0.8rem;
+}
+
+.added-popcorns-wrapper {
+    text-align: center;
+    padding: 1rem;
+    margin: 1rem;
+    width: 15rem;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #201E20;
+    color: white;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+}
+
+.added-popcorn__img {
+width: 30%;
+}
+
+.added-popcorn__name {
+    font-size: 15px;
+}
+
+.added-popcorn__serialnumber {
+    font-size: 8px;
+}
+
+.added-popcorns {
+    margin: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.total-price {
+    margin-bottom: 1rem;
+}
