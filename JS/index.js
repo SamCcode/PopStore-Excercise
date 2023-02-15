@@ -1,4 +1,4 @@
-
+let addToCartBtn;
 async function generatePopcornData() {
     let popcorns = await fetch("./products.json")
     popcorns = await popcorns.json();
@@ -6,14 +6,15 @@ async function generatePopcornData() {
 }
 
 generatePopcornData()
-
+let popcornsContainerEl;
 let listOfPopcorns = [];
 let listOfAddedPopcorns = [];
 function renderPopcornUi(popcorns) {
-let popcornsContainerEl = document.querySelector(".popcorn-wrapper")
+    popcornsContainerEl = document.querySelector(".popcorn-wrapper")
+    popcornsContainerEl.innerHTML = "";
 popcorns.forEach(popcorn => {
     popcornsContainerEl.innerHTML += `
-    <article class="popcorn-card">
+    <article onmouseleave="afterHover()" class="popcorn-card">
         <img src ="/img/${popcorn.img}" alt= "bag of popcorn" class="popcorn-card__img">
         <div class="popcorn-card__text">
         <h2 class="popcorn-card__name">${popcorn.name}</h2>
@@ -28,16 +29,49 @@ popcorns.forEach(popcorn => {
         <p>Flavour: ${popcorn.characteristics.flavour}</p>
         <p>Hardness: ${popcorn.characteristics.hardness}</p>
         </div>
-        <p class="addtocart">ADD TO CART</p>
+        <aside class ="addtocartwrapper">
+        <p class="addtocart" id="addtext">ADD TO CART?</p>
+        </aside>
     </article>
     `
     listOfPopcorns.push(popcorn)
 });
 
-let popcornCard = document.querySelectorAll(".popcorn-card");
-for (let i = 0; i < popcornCard.length; i++) {
-    popcornCard[i].addEventListener("click", (clicked) =>{
-        listOfAddedPopcorns.push(listOfPopcorns[i])
-        localStorage.setItem("addedPopcorn", JSON.stringify(listOfAddedPopcorns));
-    })}
+addToCartBtn = document.querySelectorAll(".addtocartwrapper");
+
+addEventListenerToAddToCartBtn()
+}
+
+
+let itemsCounter = 0;
+
+function addEventListenerToAddToCartBtn() {
+    for (let i = 0; i < addToCartBtn.length; i++) {
+        addToCartBtn[i].addEventListener("click", (clicked) =>{
+            addToCartBtn[i].innerHTML = `
+            <p class="addtocart">SURE?</p>
+            <button id="yesbtn">HELL YEAH</button>
+            <button id="nobtn">HELL NAH</button>
+            `
+            let yesBtn = document.querySelector("#yesbtn");
+            let noBtn = document.querySelector("#nobtn");
+            let cartNum = document.querySelector(".cart-num");
+            yesBtn.addEventListener("click", ()=> {
+                listOfAddedPopcorns.push(listOfPopcorns[i])
+                localStorage.setItem("addedPopcorn", JSON.stringify(listOfAddedPopcorns));
+                addToCartBtn[i].style.display = "none";
+                itemsCounter++;
+                cartNum.innerHTML = itemsCounter;
+            })
+            noBtn.addEventListener("click", ()=> {
+                addToCartBtn[i].style.display = "none";
+            })
+            })
+            
+        }
+
+}
+
+function afterHover() {
+    generatePopcornData()
 }

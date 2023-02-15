@@ -1,6 +1,6 @@
 let popcorns = JSON.parse(localStorage.getItem("addedPopcorn"));
 let popcornWrapperEl = document.querySelector(".added-popcorns-wrapper");
-console.log(popcorns);
+
 
 let listOfTotalPrice =[];
 popcorns.forEach(popcorn => {
@@ -20,6 +20,6 @@ let sum = 0;
 for (let i = 0; i < listOfTotalPrice.length; i++) {
     sum += listOfTotalPrice[i];
 }
-console.log(sum);
+
 let totalPrice = document.querySelector(".total-price");
 totalPrice.innerHTML ="Total price = " + sum + ":-";
