@@ -9,6 +9,17 @@ generatePopcornData()
 let popcornsContainerEl;
 let listOfPopcorns = [];
 let listOfAddedPopcorns = [];
+let storedPopcorn = JSON.parse(localStorage.getItem("addedPopcorn"));
+if (storedPopcorn) {
+    storedPopcorn.forEach(element => {
+        console.log(element);
+        listOfAddedPopcorns.push(element)
+    });
+
+}
+
+// listOfAddedPopcorns.push(storedPopcorn);
+
 function renderPopcornUi(popcorns) {
     popcornsContainerEl = document.querySelector(".popcorn-wrapper")
     popcornsContainerEl.innerHTML = "";
@@ -58,10 +69,13 @@ function addEventListenerToAddToCartBtn() {
             let cartNum = document.querySelector(".cart-num");
             yesBtn.addEventListener("click", ()=> {
                 listOfAddedPopcorns.push(listOfPopcorns[i])
+                // console.log(listOfAddedPopcorns);
+                
                 localStorage.setItem("addedPopcorn", JSON.stringify(listOfAddedPopcorns));
                 addToCartBtn[i].style.display = "none";
                 itemsCounter++;
                 cartNum.innerHTML = itemsCounter;
+                // console.log(listOfAddedPopcorns);
             })
             noBtn.addEventListener("click", ()=> {
                 addToCartBtn[i].style.display = "none";
@@ -71,6 +85,8 @@ function addEventListenerToAddToCartBtn() {
         }
 
 }
+
+
 
 function afterHover() {
     generatePopcornData()
